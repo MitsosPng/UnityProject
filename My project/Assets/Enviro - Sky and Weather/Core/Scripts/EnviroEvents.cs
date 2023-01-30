@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class EnviroEvents : MonoBehaviour {
-
-
 	[System.Serializable]
 	public class EnviroActionEvent : UnityEngine.Events.UnityEvent
 	{
@@ -58,11 +56,17 @@ public class EnviroEvents : MonoBehaviour {
 
 	private void NightTime()
 	{
+		GameObject [] lights = GameObject.FindGameObjectsWithTag("Lights");
+		foreach (GameObject light in lights)
+			light.GetComponent<Light>().enabled = true;
 		onNightActions.Invoke ();
 	}
 
 	private void DayTime()
 	{
+		GameObject[] lights = GameObject.FindGameObjectsWithTag("Lights");
+		foreach (GameObject light in lights)
+			light.GetComponent<Light>().enabled = false;
 		onDayActions.Invoke ();
 	}
 

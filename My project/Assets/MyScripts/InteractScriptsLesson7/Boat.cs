@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        collision.gameObject.transform.SetParent(transform);
+        if (other.CompareTag("Player"))
+        {
+            other.transform.SetParent(transform);
+        }
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        collision.gameObject.transform.SetParent(null);
+        if (other.CompareTag("Player"))
+        {
+            other.transform.SetParent(null);
+        }
     }
 }
